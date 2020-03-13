@@ -1,0 +1,9 @@
+0.8.1: 
+
+Patch file load and save from SD "PRESET" folder
+press right button to make resonator FX follow pitch. the pitch slider becomes offset there is no indicator yet.
+removed hard wired CV to virtual attenuverter pages, the "catch" pot indicator will go there. (not working, patches load to where the pots are currently)
+separate left and right pitch modulation amount and source per osc.
+
+todo next. WE files try to load more than actual number of files. errors briefly pop up.
+global set page MIDI channel and secondary MIDI channel, allow program change to work toggle.
