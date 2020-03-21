@@ -1,9 +1,29 @@
-0.8.1: 
+version 0.8.1
+changed global settings screen, now saves MIDI channel and CCs, as well as program change enable.
 
+fixed reversed right encoder on gate matrix
+
+fixed missing "pitch follow" icon indicator on resonator FX (right screen button) works the same as osc modes that have an element that can follow pitch
+
+removed extra "do nothing" sliders on some effects
+
+switch scope view with left encoder click (mode screen) instead of confusing it with right button "pitch follow enable" in some modes
+
+fixed: MIDI was resetting oscs on every note on. (when reset was on)
+
+Slowed down "virus" sustain ramp
+
+Re-ordered SYS button screens, load/save is first 
+sample rate screen is "hidden" only visible by multiple presses of SYS, not left encoder press-turn.
+
+version 0.8.0:
 Patch file load and save from SD "PRESET" folder
+
 press right button to make resonator FX follow pitch. the pitch slider becomes offset there is no indicator yet.
+
 removed hard wired CV to virtual attenuverter pages, the "catch" pot indicator will go there. (not working, patches load to where the pots are currently)
+
 separate left and right pitch modulation amount and source per osc.
 
-todo next. WE files try to load more than actual number of files. errors briefly pop up.
+todo: WE files try to load more than actual number of files. errors briefly pop up.
 global set page MIDI channel and secondary MIDI channel, allow program change to work toggle.
