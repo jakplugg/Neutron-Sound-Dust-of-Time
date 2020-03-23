@@ -1,5 +1,16 @@
+Version 0.8.3
+Added "0 velocity" control to the  VCA/SUB/FX routing screen controls, for no velocity control, leave it at maximum, as it is reduced, it lowers the level which will be output with zero velocity, while maximum velocity will output maximum level. when using with v/oct, after using with MIDI, the velocity will be maximized after the envelope has closed.
+
+note: velocity only works when the output VCA is being controlled by an envelope or gate.
+
+Added "use"[CC number] on config page. when MIDI CC is detected, you can press left screen button to apply that CC to one of the 4 CC slots.
+
+On output VCA/FX screen you can press left button to change the VCA from linear to exponential. there is an icon in the bottom left corner with a ramp or curve.
+
+On the Fusers, "expo" has been added to allow using exponential versions of internal modulator "voltages" (note, this "exponential converter" is actually based on a cube law, so voltages below 0 will be "anti exponential")
+
 version 0.8.1
-changed global settings screen, now saves MIDI channel and CCs, as well as program change enable.
+changed global settings screen, now saves MIDI channel and CCs, as well as program change enable.returned the frequency readout on calibration.
 
 fixed reversed right encoder on gate matrix
 
