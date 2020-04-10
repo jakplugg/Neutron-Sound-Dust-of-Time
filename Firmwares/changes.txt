@@ -1,4 +1,20 @@
+
+Version 0.8.5
+Added "blind modes" When in the osc screen you can press the osc button again to toggle changing the opposite oscillator mode and methods
+that way you can change the oscillator which you can not see or hear then when you fade back to it you will hear a different sound.
+
+fixed negative sustain slope showing large number
+
 Version 0.8.3
+
+Replaced first envelope curve with new "capacitor" curve which is shaped like an analog envelope.
+
+Fixed "catch up" Pot controls will start at the position saved in a patch, an XOR line will appear on the attenuverter page showing position of the current pots value, and a small mark beside the pot and modulation indicator showing where the patch value is. when the line meets the mark, then the pot "catches" and will follow the turning of the potentiometer. The small mark remains to show the patch starting point for reference,
+
+Scan LEDs will blink when pot is not caught. (removed, it was sort of annoying)
+
+on the mode screen, uncaught pots are indicated on top of the scope with up/dn triangles showing the direction to turn in order to "catch" them.
+
 Added "0 velocity" control to the  VCA/SUB/FX routing screen controls, for no velocity control, leave it at maximum, as it is reduced, it lowers the level which will be output with zero velocity, while maximum velocity will output maximum level. when using with v/oct, after using with MIDI, the velocity will be maximized after the envelope has closed.
 
 note: velocity only works when the output VCA is being controlled by an envelope or gate.
