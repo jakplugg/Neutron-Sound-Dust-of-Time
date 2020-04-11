@@ -1,5 +1,12 @@
 
 Version 0.8.5
+Changed envelope display so the "diagram" is larger.and hopefully the controls are easier to navigate
+
+Sub oscillator added parameters
+besides bank and wave, you can now pick 1 or 2 octaves down, pick what it follows (osc1, osc2 or global tune) and pick maximum note it will play (the note it plays will "fold over", say you set note 64 as the max note, then it will play an octave down each time it gets above note 64) 
+
+Fixed lfo reset phase not changing much.
+
 Added "blind modes" When in the osc screen you can press the osc button again to toggle changing the opposite oscillator mode and methods
 that way you can change the oscillator which you can not see or hear then when you fade back to it you will hear a different sound.
 
