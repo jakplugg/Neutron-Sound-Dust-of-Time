@@ -1,3 +1,5 @@
+Version 0.9.0
+Fixed a problem where the DAC would not start with some teensys(newer version?)
 
 Version 0.8.5
 Changed envelope display so the "diagram" is larger.and hopefully the controls are easier to navigate
