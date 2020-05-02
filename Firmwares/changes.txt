@@ -1,3 +1,21 @@
+Dust of Time Changelog.
+iff you see this on github, and don't see the release here, its a testing release, you can get at
+https://www.facebook.com/groups/2477928409137717/
+
+
+Version 0.9.2
+Added "SHIFT" system for 3 shortcuts. press sys to shift, screen will say shift and show the functions. you can do: MIDI PANIC which will turn off MIDI notes if your DAW or sequencer forgot to.
+VCA toggle turns the output VCA on and off
+save state saves the current patch to EEPROM, you can use that to save when autosave is off (option on config page)
+
+Added "push left encoder select dots" to SYS and I/O (like mod and FX already have).
+Yet another rework of envelope window.
+Fixed the modulator context sometimes not working. when you are on an attenuverter page (pot buttons) pressing MOD should take you to the modulator that is being used by that control (if it has a page!).
+
+version 0.9.1
+added "calibration helper"
+when calibrating v/octave you can press the left screen button to get "100"which is percentage of current frequency. that means double the frequency will show 200, and half will show 50. it makes adjusting calibration easier.
+
 Version 0.9.0
 Fixed a problem where the DAC would not start with some teensys(newer version?)
 
