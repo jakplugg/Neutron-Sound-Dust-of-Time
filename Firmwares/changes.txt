@@ -3,6 +3,28 @@ iff you see this on github, and don't see the release here, its a testing releas
 https://www.facebook.com/groups/2477928409137717/
 
 
+Version 0.9.4
+Simple quantizer. it is the third page on "Hz".tuning comes after quantizing, so changing semitones on the tuning page will most likely result in out of scale notes.
+there are global and patch scales, global scale and modulations are stored for all patches to use, when you are switched to global, loading a new patch will not change the scale that is playing (but patches scale will be loaded, and you can switch to "patch" and use it).
+patch scale and modulations are saved with the patch, if you are switched to "patch", then the scale is saved and loaded with the patch.
+
+Center position on scan is the root scale and root note.the second scale after "OFF" called "MIDI B" will toggle notes on the scale from the MIDI B channel.(MIDI B scale is not saved)
+Osc positions let you modulate the quantizer inputs individually for osc1 and osc 2. if you use "MAX" as the modulater, you can control an fixed offset that is alway in your scale. 
+Quantizer output gates are available in the gate generators (they are too fast to be seen on the gate matrix, later ill make the length of them modualateable via a mod source).
+
+Gate matrix has been expanded to include MIDI B note-on/off
+Gate matrix rules are more easy to understand:
+"ANY" any gate with a selected "pin" on the matrix will output on that gate bus row.
+"1 on" will output a gate when only 1 of the selected gates is on
+"2 on" will output a gate when 2 selected gates are on
+"0 on" will output a gate when all selected gates are off
+
+Added a new fuser function: "sample and hold" works like a normal one, input a modulator, and select a gate bus with the left button.
+Added a (possibly quite useless) source to the "control" modulator, it corresponds to the MIDI clock BPM. zero is 0, 500 is maximum.
+
+Kenvelopes.
+
+
 Version 0.9.2
 Added "SHIFT" system for 3 shortcuts. press sys to shift, screen will say shift and show the functions. you can do: MIDI PANIC which will turn off MIDI notes if your DAW or sequencer forgot to.
 VCA toggle turns the output VCA on and off
