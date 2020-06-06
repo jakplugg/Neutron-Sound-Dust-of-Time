@@ -1,6 +1,29 @@
 Dust of Time Changelog.
-iff you see this on github, and don't see the release here, its a testing release, you can get at
+if you see this on github, and don't see the release here, its a testing release, you can get at
 https://www.facebook.com/groups/2477928409137717/
+
+version 0.9.4.5
+The macro knob is now bipolar.this means that your saved patch's stereo detune settings will be different, if it was being used.
+
+Macro knob display now shows how it is actually working. on macro the pot does what the right encoder usually does on the other potscreens. the start point is always zero, so when the knob is in the middle, there is no output to the "macro" modulation source.
+
+Mixed wonky sustain slope on envelope diagram
+
+Scan crossfade mode was moved to the scan controls page, you can switch with the left button. currently there are:
+normal 11<>22 which fades between the 2 oscillator pairs
+crossover 12<>21 which swaps oscillator 2's fade direction,
+
+Shortcut to stereo page from macro control's page.
+
+Basic screen saver, encoder move or button press to exit.(later version will alow disabling and change timer up ro 2550 seconds (approx)
+
+Mixed sustain segment on env 3 and 4 (again)
+
+MIDI notes on MIDI A now follow a "highest priority except the last note you played always plays"
+
+Mixed a long standing MIDI clicks sometimes on new note while envelope is open. it was velocity changing, DUH!
+
+Now subsequent notes you play while the gate is open, will have the same velocity as the first note that opened the gate. (sorry advanced sequencer users, this will probably cause some confusion)
 
 
 Version 0.9.4
