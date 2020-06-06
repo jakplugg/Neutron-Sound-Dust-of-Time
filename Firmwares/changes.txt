@@ -17,11 +17,11 @@ Shortcut to stereo page from macro control's page.
 
 Basic screen saver, encoder move or button press to exit.(later version will alow disabling and change timer up ro 2550 seconds (approx)
 
-Mixed sustain segment on env 3 and 4 (again)
+Fixed sustain segment on env 3 and 4 (again)
 
 MIDI notes on MIDI A now follow a "highest priority except the last note you played always plays"
 
-Mixed a long standing MIDI clicks sometimes on new note while envelope is open. it was velocity changing, DUH!
+Fixed a long standing "MIDI clicks sometimes on new note while envelope is open". it was velocity changing, DUH!
 
 Now subsequent notes you play while the gate is open, will have the same velocity as the first note that opened the gate. (sorry advanced sequencer users, this will probably cause some confusion)
 
