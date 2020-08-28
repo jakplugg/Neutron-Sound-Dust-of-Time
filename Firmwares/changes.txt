@@ -1,11 +1,148 @@
 Dust of Time Changelog.
 if you see this on github, and don't see the release here, its a testing release, you can get at
 https://www.facebook.com/groups/2477928409137717/
+New/Bug/Change/Knownbug
+
+Release numbers such as 0.x.x are target releases, starting 0.9.6B releases have a letter,
+x.x.xA = initial release on FB.
+x.x.xB = fix release on FB.
+x.x.xC up to Q more bugs fixed and found
+x.x.xRL = official release to github and muffs, target moves up.
+
+
+version 0.9.6B
+N>OSC MODES> added "FILTX" which are filters which work on the other osc, there is (LPoppo)low, (BPoppo)band, and (HPoppo)high pass, as well as a low pass "mistake" that can make some interesting distortion(FKoppo).
+
+C>OSC MODES> changed name of extend to swarm, the original swarm is called detune, and there is a new one called "static" where the saws do not move unless you modulate or turn a parameter knob.
+
+B>INTERNAL> fixed a bug where the modes have been changed in a new firmware, but an old patch, or the internal EEPROM is still trying to use a non existing method for an osc mode, now it will revert to the first method on the osc mode, and ruin your patch instead of crashing.
+
+C>MOD>FUSER> "Invert" fuser has been changed to "LvSHIFT" and is now in the fourth fuser selection. it can still invert, but also level shift: bipolar modulators can be changed to only positive, only negative, and inverted versions of both, positive only modulators can be shifted to become inverted within the positive range, bipolar or inverted bipolar. 
+
+
+version 0.9.6
+N>Hz>PAGE2>CENTER> the glide(portamento) can now be at different rates for the 2 oscillators. the sub will follow according to its "follow" setting, (global has no glide) this can be interesting when using the sub as a modulator.
+Right button enables "keyed" glide, it only glides once a key is already pressed. 
+
+note: modulation of glide rate is not working yet, despite controls being present.
+
+B>MODS>SUB Sub was an octave high.
+
+B>SHIFT now returns to screen if you press one of the shift functions, if you press it by it's self, it works as sys button as usual.
+
+C>OSC>BLIND MODES pressing osc a second time no longer enables blind modes, you can get to it by pressing shift(sys)+osc
+
+B>INTERNAL>OSC> WaveEdit was always loading wave 1 on boot up, now it will load the used wavetable for oscs in that mode.
+
+C>ENVELOPE CODE> sometimes a "squeak" could be heard with some combinations of attack/decay/release and lower frequency "smooth" waves, this has been reduced.
+
+C>FX> Effects now show the modulator and modulation amount as a bar similar to the one on attenuverter pages.
+
+C>FX> selection highlight changed from frame to inverted box for better visibility.
+
+N>OSC MODES> New osc mode called "HAX" which is for oddities. there are so far 4 "all mod" controlled oscillators and CV in amplifier for CV a and B. what they sound like will change dependinmmg on what the modulators are doing.
+
+mHARM amplifies 8 harmonices via the LFO and CHAOS modulators. P1 offers a slight detuning of the harmonics, and P2 allows selection of the harmonic sequence (they are the same as the ones in the harmonic mode)
+
+mAMP simply raises or lowers segments of the wave depending on what the modulators are doing, p1 is a "filter" frequency, and p2 is a fade between lowpass and bandpass
+
+mLEN uses 8 modulators to control the length of "1" and "0" then all 8 are mixed and amplified. it is similar to (find EN article number that used 555 timers as a "resonator") p1 is a "filter" and p2 controls the maximum length in powers of 2 (max length is full wave, then half, 1/4 etc)
+
+mSAW is 8 saw waves (4x oversampled) which are offset by -you guessed it!- 8 modulators. it is like a supersaw, but the individual waves never go "out of tune" 
+p1 is a "filter" and p2 controls the maximum size of the offset (see mLEN above) tip! try controlling the filter frequency with SUB at about 1/4 max modulation, you can get an apparent octave change as you raise the frequency.
+
+AB_AMP: (return of!) you can input audio signals to the A and B CV inputs, P2 is an amplifier control, which will boost or cut the input (with soft clipping) P1 is a "low pass filter". Note: the CV inputs the rest of the module sees have been smoothed with an averaging filter, in order to get the most bandwidth, this is bypassed and uses the raw CV input, It is by no means "HiFi" the sample rate is only 20.5 KHz and it can be noisy. also, the scope will not be in sync unless the incoming sound is at the same pitch the oscillator is playing at, however you can change the scope's "timebase" by playing a note. 
+Test example: set LFO1 to play 220Hz, then set the AUX OUT 1 to outptut LFO1. Patch the AUX OUT 1 to the CV A input.
+in OSC>HAX/AB_AMP mode, adjust amp and filter to suit. you should see a waveform on the scope, now play an "A" note on the MIDI or V/OCT in, you should see the wave standing still, play another note and it will move.
+
+
+
+version 0.9.5.1
+C>INTERNAL: Changed overclocking from 256 to 240MHz, some teensys were crashing after a variable amount of time and this seems to have fixed it for them. It meant the sample rate had to be changed to 44.1KHz. 
+
+C>ALL: some screens, including Tune, LFO, Chaos, and Fuser screens have been tidied up.
+
+C>MOD>FUSER: the release slider for the follower function has been reversed, to the right is longer decay.
+
+N>MOD>LFO: the "reset to phase" position now indicated on the "scope" with dotted line.
+
+N>MOD>XTRA: added "hustle" which is a modulator that increases in value the more MIDI note on or gates are recieved, and decreases over time.
+
+C>INTERNAL>MOD>CHAOS: in some chaos attractors, the output could be a higher "voltage" than the maximum mod amount, it has been given the clamps!
+
+B>MACRO: Fixed (again!) the shortcut to stereo page caused crash.
+
+N>I/O>GateGen: added "Euclidean circles" gate generator.
+
+B>FX> Extra non working sliders removed on fx 
+
+B>
+
+version 0.9.5
+note: added these labels, 
+
+C>I/O>INTERFACE>CONTROLSET: The vca page has had name changed the "output" diagram is gone, now there are 3 "windows" that swap around on the "routing" control, the sliders and sources follow them around. 
+there are tiny 1-line meters between the 3 modules so you can see how the signal is flowing. (left to right)
+
+K>MAY BE FINAL BOSS!>pressing shift does not return you to the previous screen after you do one of the shift actions.
+
+N>MOD>FUSER: Added "DIFF" fuser type. it will return the difference between the 2 selected sources.
+C>USER>MOD>FUSER>DISPLAY: added graphic display of the gatebuses state and selected gatebus "Gt#" (selected with BUT_LE) in the sample and hold fuser type.
+
+B>FX>SOUND: Several effects were affected by an overload distortion in a soft clip routine causing distortion in some cases(the bad kind),
+
+C+B>INTERNAL>FX>SOUND>soft clip2 was improved and fixed.
+
+C+N>INTERNAL>FX>NOISE>SOUND>filter for "hypnoTOAD" noise was replaced with the same one that is on the LP noise.
+
+C>INTERFACE>PHYSICAL: Left encoder selecting by "press-hold" replaced by "click turn click"
+
+N>OSC>INTERFACE>DISPLAY: FPS and CPU% meter on osc mode screen
+
+C>INTERNAL>INTERFACE>WORDS: the word "control" in mod sources was changed to "extra".
+
+C>SYS>CONTROLSET: Removed horrible confusing scrolling thing from config page, load/save next?
+
+B>B>OSC>PHYSICAL: long standing "turning encoders can sometimes crash module" bug fixed on osc screen
+
+B>OSC>DISPLAY: fixed scope display breaking up at some tunings.
+
+B>OSC>NOISE>: fixed the LP and BP noise cutting off at high levels of modulation.
+
+N+C>FX>MAXAMP: "crush" effect is replaced by MaxAmp, it will amplify low level oscillators to the maximum level, for example when swarm is spread out, the level can get low, this will fix that.
+attack is automatic, and decay can be adjusted, it can not be modulated at this time.
+fast decay will respond quickly but will add some distortion, slower values take longer to respond, but the level of distortion is much lower. if it overloads due to slow decay and a sudden change, there is a soft clip.
+there is still a crusher in the sample rate effect.
+
+N>FX>ZPM new effect (zero point modulator) a simple modulator which only allows the modulation level to change when the input signal has crossed zero. this means that the envelope (or other modulator) does not distort the shape of the input waveform, and the shortest possible envelope is half a cycle (or until the first zero crossing) Idea may be stolen from WMD digital VCA.
+
+C>I/O>STEREO>DISPLAY: cleaned up stereo page.
+Stereo "difference" can now be modulated separately from pan.
+there is a shortcut to the stereo page from the macro pot screen via right button.
+the buttons were swapped, so old presets might be changed.
+
+B>INTERNAL>V-AVERT>MACRO: Fixed macro pot was only half range.
+
+N>OSC>SOUND+INTERFACE added reset to 90 degrees for osc reset modes (left button)
+arrow symbol = no reset
+box with "0" = reset to 0
+box with "90" = reset to 90
+box with "A0" = only reset to 0 when VCA is being used, and it is closed.
+
+N>MOD>EXTRA: MIDI pressure added to "control" sources (now called extra)
+
+C>Hz>MODULATION[global]: changed pitch bend max to 24 semitones 
+
+N>Hz>MODULATION[global]: Pitch bend can be different for up and down, and also for osc 1 and osc 2
+
+B>Hz>MODULATION[global]:fixed pitch bend sometimes would not zero.
+
+K>Hz>MODULATION[global] only the o1 glide actually does anything for both oscs, mod source does not work
+
+C>INTERFACE>DISPLAY:version now shown on button press even if VCA is closed
 
 version 0.9.4.5
 The macro knob is now bipolar.this means that your saved patch's stereo detune settings will be different, if it was being used.
-
-Macro knob display now shows how it is actually working. on macro the pot does what the right encoder usually does on the other potscreens. the start point is always zero, so when the knob is in the middle, there is no output to the "macro" modulation source.
 
 Mixed wonky sustain slope on envelope diagram
 
