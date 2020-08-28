@@ -1,10 +1,14 @@
-# Dust of Time
-Eurorack stereo oscillator with modulators, utilities, MIDI etc.
+# Neutron sound Dust of time public files
+These are public files for the Neutron sound Dust of time, the board files and firmware are currently not open source. 
 
-Very early manual
+Dual Eurorack stereo oscillator with modulators, utilities, MIDI and gate processing/generating.
+
+Early manual:
 https://docs.google.com/document/d/1-gQu5ynSra2hIat8SPNhFe4P0LNxqjS46jEjF0CGYL4/edit#
 
-This is not open source, exept panel dimensions will be released.
+iBom:
+http://neutron-sound.com/Dust_of_Time/iBOM/DoT_DIY_1.html
+
 
 ![DoT](dot1.jpg)
 
