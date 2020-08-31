@@ -9,6 +9,9 @@ https://docs.google.com/document/d/1-gQu5ynSra2hIat8SPNhFe4P0LNxqjS46jEjF0CGYL4/
 iBom:
 http://neutron-sound.com/Dust_of_Time/iBOM/DoT_DIY_1.html
 
+Sheets BOM.
+https://docs.google.com/spreadsheets/d/1yWP0SEDUn4MFoWlR4tSw32LnQw3czUZVgWfFrcoWUo0/edit?usp=sharing
+
 
 ![DoT](dot1.jpg)
 
