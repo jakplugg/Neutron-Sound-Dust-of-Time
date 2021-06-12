@@ -1,0 +1,3 @@
+0.9.7D SAVE YOUR PATCH!
+
+0.0.7D there might be a bug where sys>load/save controlset gets fuckering text on the "save" page, when i loaded a patch it went away and it would not happen again.
