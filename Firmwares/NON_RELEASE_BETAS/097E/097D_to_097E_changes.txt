@@ -1,0 +1,56 @@
+OSC,FX,MOD,etc are called "elements"
+
+Changes to the overview page: some things still do not work for VCA or stereo section yet
+
+Meters: the tiny meter closest to the modulator initials will show what the modulator is doing
+the middle meter is the modulation amount attenuverter position
+That can be adjusted with the right encoder, a circle thing with a simple bar meter appears now, then goes away after you stop adjusting it.it will be made nicer.
+the last meter is the result of the modulation and attenuverter.
+
+you can edit the mod source and amount for each section:
+When the cursor is on a mod source, the right encoder will adjust the mod source for that section.
+
+you can jump to that modulator to edit by clicking the right encoder or the mod button.
+if it is a "no page" modulator such as a CV, it will go to some other element, usually the tune screen. if you clicked the encoder(to be fixed!),last used modulator will show if clicked mod button with "no page" modulator.
+
+When you jump to an FX page from the overview, the Scan position will not control the FX you are editing, this is shown by a white block around the direction icons. if you press any button or turn any knob this will return to normal.
+
+when the cursor is on a meter, the right encoder will adjust the modulation amount for that section. 
+you can jump to that element by clicking the right encoder.
+
+Change to the output VCA.
+There is now a Z mode on the output VCA switched with the right screen button. when "Z" is enabled, the VCA is only allowed to change level when the output waves cross zero. this prevents the VCA from distorting the waveform. 
+Imagine you had a fast decay on a square wave, during the decay, the top of the wave will be triangular. this will introduce extra harmonics you may not want on your sound. the downside is that with fixed rate fast decays, there may not be any time that the waveform is "inside" the decay, and the sound will just be at the sustain level right from the start. if the oscillar(s) are not in a sync start mode this can even make borderline frequencies only lose their attack and decay sometimes. you can modulate the decay time with the new "period" option in "EXTRA" modulator to fix that.
+
+Envelope:
+The "page" buttons are gone, I found them a bit annoying. now you press the encoder to access additional controls for the envelope segment, you can navigate through the segments (LAHDSR+options) while on the "segment window" with the buttons, or return to main envelope page by clicking the right encoder. 
+
+the new segWin screens are still a bit ugly and need some work.
+
+Please note, you will see multipliers next to the "bars" for the mod attenuverter amount, but that is not actually how it is modulating yet, that has not been changed in this version. when it is changed in the enxt version, it will change how any patches you saved that have envelope modulation work, you should be able to get them back how that were with a small tweak.
+
+also velocity and keyscale are not working either until next version (097F) period(what keyscale will be made from) has been added to the EXTRA mod sources though.
+
+"Delay" is now called "Lag". That is because the new envelope segment window screens use a single letter to show what segment you are on, and Delay and Decay both start with D!
+
+Main envelope display is scaled to the width of the screen. 
+
+There was a bug that would forget envelope repeats on restart/reload until you looked at the offending envelope screen.
+
+Envelope repeats are ramped, the bottom of the decay will gradually rise to the sustain level on each repeat.
+
+OSC:
+the "avg" type of noise cause a crash, i had to recreate it, and it is a bit different now so any presets you might have created using it will sound different.
+
+XTRA:
+a modulator calle "period" has been added, you can scale envelopes with it, the lower frequency of the 2 oscillators is converted to wavelength, for example, it can be used to accurately scale envelope decay so lower notes have a longer decay. NOTE: when using a lot of emvelope modulation with VERY low notes, it is possible for a "rollover" to happen which causes a short decay to happen instead of a long one. I am searching for this bug!
+
+Save bug. there was a bug where you could get in a state that the save would not work, and there would be extra characters in the save name. hopefully killed! (it still says ABCDEFGH though which i have not programmed!)
+
+uploaded a new patch called "GODKILLR" to the github, it uses subOSC modulation of a few things and the macro knob controls. it relies on waveEdit file 34 being unchanged from the one on github. 
+
+
+
+
+
+
