@@ -1,0 +1,39 @@
+0.9.7G changes
+
+Envelope:
+there was a bug where the left encoder did not work unless you clicked it, when you clicked on P1 pot of osc1 or 2 ,scan and macro, after being on the extended envelope edit page.
+
+modulation of L,A,H,D,R by any modulator. they update at 3000 hz. 
+
+when a segment has non-zero modulation, velocity, or keyscaling, small letters will appear on the main envelope page to indicate them. the time shown at the top is before mod/vel/ksc are applied.
+
+on L,A,H,D,R segments
+the keyscaling can only make envelope segment times longer, 
+the segment times increase as pitch decreases, up to a maximum of doubling time per half pitch (octave down), starting around MIDI note 84,
+
+on Sustain segment
+as the velocity amount is increased, velocity will increase the sustain level. at the maximum amount (127) 127 velocity change sustain that is set to 0 to maximum.
+
+@MIDI PROXY.
+you can set any CV input (or any other modulator) to be the substitute for midi velocity, pitch bend, or mod wheel.
+
+@MIDI 3 transpose MIDI 3 is the next MIDI channel after MIDI 2. MIDI 2 can only be set up to channel 15
+notes arriving on MIDI channel 3 will transpose whatever is playing up or down from C4(note 60)
+
+context modulater was added to the osc screen: when you are adjusting pots while in the osc selection/ocilloscope screen and press "mod" it will ususally jump to the mod screen for the last pot you touched.
+
+LFO:
+added "bump" and "point" positive going waves.
+"bump" is the first 180 degrees of a sine wave,
+"point" is a spike created from part of a a rectified sine cubed.
+@BPM mode: click the right screen button to make the LFO frequency lock to internal clock, the divider still works. the frequency controls become 1/16, 1/8, 1/8D (dotted) etc. modulation will switch up to 4 x faster or slower.
+
+@internal clock
+this is a new screen on "I/O" you can set an internal clock BPM,
+there are (right screen button) options for when MIDI clock is recieved.
+override = clock BPM changes to measured MIDI clock BPM while clock is recieved.
+replace = clock changes to measured MIDI clock BPM and stays that way.
+
+internal clock and it's settings are saved as a system setting so loading new patches will not screw up your timing if they use the internal clock and you are playing.
+
+currently the MIDI clock will be wrong until the first complete bar is recieved, and it takes a bar to "catch up" if you change the midi clock BPM, this will be changed

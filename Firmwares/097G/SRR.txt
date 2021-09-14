@@ -1,0 +1,27 @@
+SRR "Shape reactive resonator"
+
+Imagine you have a weight on a long bouncy spring and you are holding the top of the spring in your hand.
+
+when you move your hand around in different ways, the weight can move in a nice regular rythm, or quite chaotically.
+
+now imagine your hand is tracing the shape of a waveform, the output is tracing the path of weight. 
+
+the weight will not follow a nice safe trajectory as a normal analog or digital filter would. it will change depending on what came before. sometimes a particular pitch or timbre will make it go distorted in peculiar ways. it can be "on edge" so the smallest change in a setting brings out a whole new sound. 
+
+now imagine that in glorious 1 Dimentional data, 
+
+That is what the SRR "Shape reactive resonator" does. 
+
+you can adjust the bounciness of the spring (damping) also like filter "resonance"
+
+Scaling the strength of the "spring force" adjusts how fast the output level moves toward the input. this is like a filter frequency.
+
+strength of zero, input, output, 
+
+there could be a wavetable for force vs velocity, etc it should have some effect on the output waveform (how?)
+
+I expect this would be quite an awful filter for audio reproduction!
+
+this thing only needs 3 saved values, and a few add and mult operations per sample.
+
+

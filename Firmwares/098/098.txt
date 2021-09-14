@@ -1,0 +1,53 @@
+0.9.8 changes
+There are changes that might affect the sound of patches and how your setup works, please don't update in the middle of a recording project!
+
+Gate input 2:
+will no longer reset oscillators or be used to auto switch between MIDI and v/oct inputs.
+To get auto switching and osc sync, you should input your keyboard or sequencer gate to gate input 1.
+reason:
+when using the gate 2 as a clock input to control the internal BPM, it would keep switching to v/oct mode. even when there was no v/oct input you could get mysterious wrong notes (sometimes very confusing!) also it would reset the oscillators right in the middle of a note, which would click.
+
+it can still be used as usual with the gate matrix.
+
+new! MIDI 3 transpose:
+MIDI 3 is the next MIDI channel after MIDI 2. MIDI 2 can only be set up to channel 15
+notes arriving on MIDI channel 3 will transpose whatever is playing up or down from C4(note 60)
+
+It will soon be changed so only 1 MIDI channel is selected, MIDI2 and MIDI 3 will automatically be the following 2 channels. 
+
+Envelope:
+there was a bug where the left encoder did not work (unless you clicked something), when you clicked on [either P1 pot ,scan and macro], after being on the extended envelope edit page.
+
+modulation of A,D,R by any modulator. they update at 1333 hz. 
+
+when a segment has non-zero modulation, velocity, or keyscaling, small letters will appear on the main envelope page to indicate them. the time shown at the top is before mod/vel/ksc are applied. 
+
+on A,D,R segments
+the keyscaling can only make envelope segment times longer, 
+the segment times increase as pitch decreases, up to a maximum of doubling time per halving of pitch (octave down), starting around MIDI note 84,
+
+on Sustain segment
+as the velocity amount is increased, velocity will increase the sustain level. at the maximum  (127) velocity sustain that is set to 0 will modulate to maximum. you can also modulate it with any modulator. the sustain control, velocity, and modulator are added together, once they go below zero or above maximum, there will be no effect. (try modulating it with a BPM synced LFO, fun!)
+
+context modulater was added to the osc screen: this is not something you can see, but when you are adjusting pots while in the osc selection/ocilloscope screen and press "mod" it will ususally jump to the mod screen for the last pot you touched.
+
+LFO:
+added "bump" and "point" positive going waves.
+"bump" is the first 180 degrees of a sine wave,
+"point" is a spike created from part of a a rectified sine cubed.
+@BPM mode: click the right screen button to make the LFO frequency lock to internal clock, the divider still works. the frequency controls become 1/16, 1/8, 1/4 etc. modulation will switch up to 4 x faster or slower.
+there are modifiers, = T D and 5, = means same timing as indicated on the DIV feild, T means Triplet (2/3rds of indicated), D means dotted (1.5 times indicated) and 5 means 5/4 of indicated, (i just made that up because its easier to have 4 options) if division was 1/4 notes, each LFO cycle will actually be 5/16ths long.
+When the division is modulated it stays within timing type, it will not start playing triplets when you are in dotted or anything like that.
+note: the timing type and medium range of the lfo frequency share a control. if you adjust one and then toggle between BPM/normal the value will like ly be changed.
+
+@internal clock
+this is a new screen on "I/O" you can set a clock BPM which can be used by the LFOs in the new BPM mode.
+there are 3 ways to set a BPM:
+manual setting, 
+measuring MIDI clock, measuing a clock on gate-in 2
+when in MIDI or gateclock measuring, you can click
+"GRAB"[left screen button] to assign the measured rate to the manual rate. 
+
+manual internalclock is saved as a system setting so loading new patches will not screw up your timing if they use the internal clock and you are playing. note: the MIDI and gateclock measurement is not saved.
+
+
