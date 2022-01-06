@@ -1,0 +1,68 @@
+uint32_t ENC_ACCEL[2] = {0, 0};
+uint8_t Accel_ARC = 0, Accel_addr = 0;
+
+//this part is based on encoder code by John Main ===================
+
+int8_t read_rotary(uint8_t num) {
+  static int8_t rot_enc_table[] = {0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0};
+
+  prevNextCode[num] <<= 2;
+  if (!ENC_DIRECTION) { //forward
+    if (digitalReadFast(rotarypin1[num])) prevNextCode[num] |= 0x02;
+    if (digitalReadFast(rotarypin2[num])) prevNextCode[num] |= 0x01;
+  } else {//reverse
+    if (digitalReadFast(rotarypin2[num])) prevNextCode[num] |= 0x02;
+    if (digitalReadFast(rotarypin1[num])) prevNextCode[num] |= 0x01;
+  }
+  prevNextCode[num] &= 0x0f;
+
+  // If valid then store as 16 bit data.
+  if  (rot_enc_table[prevNextCode[num]] ) {
+    store[num] <<= 4;
+    store[num] |= prevNextCode[num];
+    //if (store==0xd42b) return 1;
+    //if (store==0xe817) return -1;
+    if ((store[num] & 0xff) == 0x2b) {
+      enc_accel_counters[num][Accel_addr] = 1;//inform the acceleration driver the encoder was turned
+      return -(1 + ENC_ACCEL[num]); //add the acceleration to increment, see below
+    }
+    if ((store[num] & 0xff) == 0x17) {
+       enc_accel_counters[num][Accel_addr] = 1;//inform the acceleration driver the encoder was turned
+      return 1 + ENC_ACCEL[num];  //add the acceleration to increment, see below
+    }
+  }
+  return 0;
+}
+
+bool enc_accel_counters[2][8];//number of encoders and number of "slots"
+const int8_t Accel_speed_table[8] = {0,2,4,16,24,32,48,64};//adjust this table to your needs
+
+//acceleration code by J.Matheson neutron sound.
+
+void ENCODER_ACCEL() {// encoder acceleration control run in control loop.
+//this thing loops through encoder acceleration array and sets bits to zero, encoder use sets bits to 1
+//number of set bits controls the amount of acceleration
+  Accel_ARC ++;
+  if (Accel_ARC > 14) { //in this project, the control loop is running in a 1.3 khz timer, this counter
+    // controls how fast the acceleration is updated by only running once every n control loop cycles
+    // 100hz seems good so far. update frequency changes the acceleration response.
+    Accel_ARC = 0;
+    for (int a = 0; a < 2; a++) {//you could probably just have 1 acceleration rate even with multiple encoders if they all have the same range.
+      ENC_ACCEL[a] = Accel_speed_table[enc_accel_counters[a][0] +//you could use bytes + bitread instead of an array of bools.
+                     enc_accel_counters[a][1] +
+                     enc_accel_counters[a][2] +
+                     enc_accel_counters[a][3] +
+                     enc_accel_counters[a][4] +
+                     enc_accel_counters[a][5] +
+                     enc_accel_counters[a][6] +
+                     enc_accel_counters[a][7]];
+    }
+    Accel_addr ++; //this is the address for the encoder driver to add a "1" to the relevant encoder's array when it increments or decrements
+    if (Accel_addr > 7) {
+      Accel_addr = 0;//sets the last bit to 0, after 8 cycles all bits will be 0 and there is no acceleration
+    }
+    for (int a = 0; a < 2; a++) {
+      enc_accel_counters[a][Accel_addr] = 0;
+    }
+  }
+}

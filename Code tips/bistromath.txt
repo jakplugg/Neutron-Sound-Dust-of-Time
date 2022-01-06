@@ -1,0 +1,70 @@
+inline uint32_t umul32x32_rsh32(uint32_t a, uint32_t b)//finally got this thing working. unsigned mult-rshift 32. 
+{
+  uint32_t outH,outL;
+  asm volatile("umull %0, %1, %2, %3;\n\t" : "=r" (outL), "=r"(outH) : "r" (a), "r" (b));
+  return outH;//return most significant 32 bits, if you return outL you have a saturating multiplier instead.
+}
+
+inline uint32_t usat_mul32(uint32_t a, uint32_t b)//32 bit unsigned saturated multiply 32x32!
+{
+  uint32_t outH,outL;
+  asm volatile("umull %0, %1, %2, %3;\n\t" : "=r" (outL), "=r"(outH) : "r" (a), "r" (b));
+  return outL;//return leaast significant 32 bits
+}
+
+//warning, floats! "expo converter" for oscillators.
+static inline float fastpow2(float p) __attribute__((always_inline, unused));//faster than "pow" slower than a table 
+inline float fastpow2 (float p)
+{
+  float offset = (p < 0) ? 1.0f : 0.0f;
+  float clipp = (p < -126) ? -126.0f : p;
+  int w = clipp;
+  float z = clipp - w + offset;
+  union {
+    uint32_t i;
+    float f;
+  } v = { cast_uint32_t ( (1 << 23) *
+                          (clipp + 121.2740575f + 27.7280233f / (4.84252568f - z) - 1.49012907f
+                           * z) )
+        };
+  return v.f;
+}
+
+inline int32_t SIN15(int32_t x)//+-15 bit out sin, uses full 32 bit range and can overflow smoothly
+{
+  if ( (x ^ (x << 1)) < 0) // test for quadrant 1 or 2
+    x = (1 << 31) - x;
+  x = x >> 17;//was (30 - qN)
+  return mul(x , ( (98304) - (mul(x, x) >> 11) )) >> 14;
+}
+
+//returns phase increment from frquency.
+inline int32_t Hz2inc(float Hz) { //uses float, do not use in audio ISR!
+  float nfloat = ((2147483648.0 / sampleRate) * Hz) * 2.0;
+  return int32_t(nfloat);
+}
+
+//left shift for positive, right for negative
+inline uint32_t eitherWayShift(uint32_t input, int8_t shift){
+  if (shift > 0){
+    return input<<shift; 
+  }
+  else {
+    return input>>(abs(shift)); 
+  }
+}
+
+inline int32_t softClip2(int32_t in) {
+  in = (clampS_rsh(in, 15, 0));
+  int32_t subtractor = ((((in * in) >> 15) * in) >> 14);
+  return (((in + (in >> 1)) - subtractor) * 62552)>>15;//rescale to output just under max possible +-15 bits
+  //return in;
+}
+
+//give em da clamps!
+inline int32_t clampS_rsh(const int32_t val, const int bits, const int rshift)
+{
+  int32_t out;
+  asm volatile("ssat %0, %1, %2, asr %3" : "=r" (out) : "I" (bits), "r" (val), "I" (rshift));
+  return out;
+}
