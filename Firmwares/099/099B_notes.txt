@@ -1,0 +1,51 @@
+0.9.9B changes:
+
+Internal clock. 
+A new page on the i/o section. you can select MIDI or internal clock, you can manually set BPM or you can "grab" the clock rate from MIDI to the internal clock
+
+clock bus and reset bus are available in envelopes, LFOs, euclidean, etc when there is a gate and/or reset selector, it is indicated by 4 boxes which are cloce together indication the original gate buses from the gate matrix, then an additional 2 boxes for the clock and reset buses.
+there may also be a "F" if appropriate which means "free running"
+
+"midi clock" type on the gate generators has been replaced with "clocked"
+this means the selected gate will be gated by the clock bus.
+
+modulation sequencer
+It is a new type of modulator which steps through 2-16 selectable levels and/or modulators. you can select the gate to use for clock, and optional reset. steps have individual modulator, attenuverter, offset, and glide. 
+
+Envelopes now have trig mode.(select with left screen button)
+Just LAHD but the envelope will complete no matter how long the gate is.
+
+gateBus selection on main envelope page
+
+LFOs have BPM mode 
+(press right button) the BPM will be based on the internal clock. you can divide it by 1/32-256/1 with modulation that stays on the division steps. there are [T]riplet [D]otted [5](5 beats per 4) and [=]4/4 modulation stays within timing type
+
+Envelopes that are in gate mode and have reps > 0 will "walk up" to the sustain level, the end of the decay is ramped up so the final repeat will end at the sustain level.
+
+new scan mix mode, (select with right button on scan page) its "-AM" (anti-AM) osc 2 will exist in the space left above osc1's waveform even when scan is turned or modulated all the way to osc2, osc 1 will still affect osc 2, even though you cant hear osc 1.
+
+BLiXY oscillator.
+there is a new osc mode, the oscillator creates waveforms from up to 32 data points in amplitude and time, you can select 2 of them,(right encoder+click right encoder) and morph the time and amplitudes independently with parameter 1 and 2.
+the shape can be a bit inconsistent over the frequency range because it has automatic band limiting.
+There are 16 preset internal shapes, and it is planned to have 16 more, and allow up to 32 more user shapes via files on SD card.
+
+there is a "silence" wave at the end of the basic modes. It is basically nothing. I made it for testing performance, but can actually be useful sometimes (use scan as a VCA, orgone style)
+
+improved AB CVin "oscillator" (audio input from A and B cv inputs) it has amplifier, filter, and soft clipping
+
+fixed "stash" fuser. each selected gate will sample the selected modulator and add it to the stash the level is limited to the maximum and minimum modulation amount, the selected reset gate will set it back to zero. one sample of maximum modulator will add 1/8th to the output value.  
+
+CPU use and FPS improved. (least to say, but the most work!)
+
+Replaced the experimental "NDfilt" effect (which did not work right), with a phaser.I had left this out because of the high CPU use but after a bit of tweaking i managed to improve the efficiency enough to bring it back. 
+It has 6 all-pass filter stages per channel, and modulation controls where there would normally be an LFO on a phaser so you can use any modulator instead of a boring old sine LFO. you can run the phaser static to alter the phase-tone of the oscillators. 
+
+controls: 
+Mix: you will not hear much phaser effect at either end of the mix, phaser effect relies on the difference between the phase shifted signal and the original. setting the MIX control to the top (full "phase") may be useful for smearing the sound of oscillators.
+FMOD: adjust the amount of modulation. this control is bipolar.
+SRC: modulation source as usual
+FRQ: the start frequency with no modulation
+TUBE: the length of the delays in the all-pass filters, 1-16 (higher numbers are not technically a phaser any more but can sound interesting)
+
+
+
