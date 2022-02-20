@@ -1,4 +1,5 @@
-0.9.9B changes:
+0.9.9C changes:
+this was the note for 0.9.9B which had a nasty bug. hopefully fixed, you can check by pressing the scan button or pot! 
 There is now a wiki on the dust of time repo on github. 
 
 Internal clock. 
