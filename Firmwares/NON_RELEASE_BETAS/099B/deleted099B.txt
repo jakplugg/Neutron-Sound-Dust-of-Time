@@ -1,0 +1,4 @@
+This had a bug which was not apparent on my test module because EEPROM overrides default settings.
+Pressing the scan pot or button could cause a crash, depending on the state of your right scan button setting (which was useless so you probably never touched it)
+
+0.9.9.C coming shortly.
